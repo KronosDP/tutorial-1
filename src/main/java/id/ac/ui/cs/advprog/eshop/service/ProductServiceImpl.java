@@ -9,9 +9,11 @@ import java.util.ArrayList;
 import java.util.Iterator;
 import java.util.List;
 
+
+@Service
 public class ProductServiceImpl implements ProductService {
     @Autowired
-    private ProductService productRepository;
+    private ProductRepository productRepository;
 
     @Override
     public Product create(Product product){
@@ -21,7 +23,7 @@ public class ProductServiceImpl implements ProductService {
 
     @Override
     public List<Product> findAll(){
-        Iterator<Product> productIterator = (Iterator<Product>) productRepository.findAll();
+        Iterator<Product> productIterator = productRepository.findAll();
         List<Product> allProduct = new ArrayList<>();
         productIterator.forEachRemaining(allProduct::add);
         return allProduct;
