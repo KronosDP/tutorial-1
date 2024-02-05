@@ -50,7 +50,7 @@ public class CreateProductFunctionalTest {
 	@Test
 	void createManyProducts(ChromeDriver driver) {
 		Random random = new Random();
-		int numberOfProducts = 50;
+		int numberOfProducts = 100;
 		for (int i = 0; i < numberOfProducts; i++) {
 			driver.get(baseUrl);
 			WebElement name = driver.findElement(By.name("productName"));

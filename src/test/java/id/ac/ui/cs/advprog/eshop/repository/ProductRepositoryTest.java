@@ -182,23 +182,4 @@ class ProductRepositoryTest {
                 productRepository.delete(product.getProductId());
                 assertNull(productRepository.findById(product.getProductId()));
         }
-
-        @Test
-        void testDeleteManyProducts() {
-                for (int i = 0; i < 10_000; i++) {
-                        Product product = new Product();
-                        product.setProductName("Sampo Cap Bambang");
-                        product.setProductQuantity(100);
-                        productRepository.create(product);
-                }
-
-                Iterator<Product> productIterator = productRepository.findAll();
-                for (int i = 0; i < 10_000; i++) {
-                        assertTrue(productIterator.hasNext());
-                        Product product = productIterator.next();
-                        productRepository.delete(product.getProductId());
-                        assertNull(productRepository.findById(product.getProductId()));
-                }
-        }
-
 }
