@@ -14,4 +14,18 @@ public class Product {
     public Product() {
         this.productId = "P" + (idCounter++);
     }
+
+    public void setProductQuantity(int productQuantity) {
+        if (productQuantity < 0) {
+            throw new IllegalArgumentException("Product quantity cannot be negative");
+        }
+        this.productQuantity = productQuantity;
+    }
+
+    public void setProductId(String productId) {
+        if (productId == null || productId.isEmpty()) {
+            throw new IllegalArgumentException("Product ID cannot be empty");
+        }
+        this.productId = productId;
+    }
 }
