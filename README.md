@@ -32,6 +32,8 @@ Selain itu, _error handling_ belum saya lakukan. Hal ini karena menurut saya _er
 
 </details>
 
+<br>
+
 # Reflection 2
 
 Setelah membuat beberapa _unit tests_ untuk kode saya, ada beberapa hal yang saya temui dan rasakan.
