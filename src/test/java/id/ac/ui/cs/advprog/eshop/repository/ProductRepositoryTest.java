@@ -9,6 +9,8 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import org.springframework.boot.test.mock.mockito.MockBean;
 
 import java.util.Iterator;
+import java.util.List;
+import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -182,4 +184,16 @@ class ProductRepositoryTest {
                 productRepository.delete(product.getProductId());
                 assertNull(productRepository.findById(product.getProductId()));
         }
+
+        @Test
+        void testDeleteProductWithNonExistentId() {
+                Product product = new Product();
+                product.setProductName("Sampo Cap Bambang");
+                product.setProductQuantity(1);
+                productRepository.create(product);
+
+                productRepository.delete("a0f9de45-90b1-437d-a0bf-d0821dde9096");
+                assertNotNull(productRepository.findById(product.getProductId()));
+        }
+
 }
