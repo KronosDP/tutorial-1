@@ -31,6 +31,14 @@ public class CreateProductFunctionalTest {
 	@BeforeEach
 	void setUp() {
 		baseUrl = String.format("%s:%d%s", testbaseUrl, serverPort, "/product/create");
+		ProductRepository productRepository = new ProductRepository();
+		productRepository.deleteAll();
+	}
+
+	@AfterEach
+	void tearDown() {
+		ProductRepository productRepository = new ProductRepository();
+		productRepository.deleteAll();
 	}
 
 	@Test
@@ -54,7 +62,7 @@ public class CreateProductFunctionalTest {
 		for (int i = 0; i < numberOfProducts; i++) {
 			driver.get(baseUrl);
 			WebElement name = driver.findElement(By.name("productName"));
-			String productName = "Product " + random.nextInt(10_000);
+			String productName = "Product " + i;
 			name.sendKeys(productName);
 
 			WebElement quantity = driver.findElement(By.name("productQuantity"));
@@ -65,7 +73,7 @@ public class CreateProductFunctionalTest {
 			submit.click();
 		}
 		List<WebElement> productList = driver.findElements(By.tagName("tr"));
-		assertEquals(1 + numberOfProducts, productList.size());
+		assertEquals(2 + numberOfProducts, productList.size());
 	}
 
 }

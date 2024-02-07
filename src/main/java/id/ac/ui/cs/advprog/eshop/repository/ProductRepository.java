@@ -50,4 +50,8 @@ public class ProductRepository {
             }
         }
     }
+
+    public void deleteAll() {
+        productData.clear();
+    }
 }
