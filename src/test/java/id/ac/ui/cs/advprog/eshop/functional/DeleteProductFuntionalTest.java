@@ -74,7 +74,7 @@ public class DeleteProductFuntionalTest {
 
                 // Check if the product is deleted
                 List<WebElement> rows = driver.findElements(By.xpath("//table/tbody/tr"));
-                assertEquals(0, rows.size());
+                assertEquals(100, rows.size());
         }
 
 }
