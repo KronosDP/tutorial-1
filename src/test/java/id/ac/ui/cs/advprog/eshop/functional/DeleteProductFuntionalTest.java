@@ -30,6 +30,18 @@ public class DeleteProductFuntionalTest {
         private String testbaseUrl;
         private String baseUrl;
 
+        @BeforeAll
+        static void setUpAll() {
+                ProductRepository productRepository = new ProductRepository();
+                productRepository.deleteAll();
+        }
+
+        @AfterAll
+        static void tearDownAll() {
+                ProductRepository productRepository = new ProductRepository();
+                productRepository.deleteAll();
+        }
+
         @BeforeEach
         void setUp() {
                 baseUrl = String.format("%s:%d%s", testbaseUrl, serverPort, "/product/create");
@@ -48,7 +60,7 @@ public class DeleteProductFuntionalTest {
                 driver.get(baseUrl);
 
                 WebElement name = driver.findElement(By.name("productName"));
-                name.sendKeys("Product 1");
+                name.sendKeys("Product Delete");
 
                 WebElement quantity = driver.findElement(By.name("productQuantity"));
                 quantity.sendKeys("100");

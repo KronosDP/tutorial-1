@@ -1,10 +1,13 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import id.ac.ui.cs.advprog.eshop.model.Product;
+import id.ac.ui.cs.advprog.eshop.repository.ProductRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.*;
+
+import org.junit.jupiter.api.AfterAll;
 
 public class ProductTest {
         Product product;
@@ -15,6 +18,12 @@ public class ProductTest {
                 this.product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
                 product.setProductName("Sampo cap Bambang");
                 product.setProductQuantity(100);
+        }
+
+        @AfterAll
+        static void tearDown() {
+                ProductRepository productRepository = new ProductRepository();
+                productRepository.deleteAll();
         }
 
         @Test

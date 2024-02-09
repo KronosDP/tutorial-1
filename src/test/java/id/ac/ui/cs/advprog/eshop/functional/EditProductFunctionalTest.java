@@ -29,9 +29,29 @@ public class EditProductFunctionalTest {
         private String testbaseUrl;
         private String baseUrl;
 
+        @BeforeAll
+        static void setUpAll() {
+                ProductRepository productRepository = new ProductRepository();
+                productRepository.deleteAll();
+        }
+
+        @AfterAll
+        static void tearDownAll() {
+                ProductRepository productRepository = new ProductRepository();
+                productRepository.deleteAll();
+        }
+
         @BeforeEach
         void setUp() {
                 baseUrl = String.format("%s:%d%s", testbaseUrl, serverPort, "/product/create");
+                ProductRepository productRepository = new ProductRepository();
+                productRepository.deleteAll();
+        }
+
+        @AfterEach
+        void tearDown() {
+                ProductRepository productRepository = new ProductRepository();
+                productRepository.deleteAll();
         }
 
         @Test
@@ -39,7 +59,7 @@ public class EditProductFunctionalTest {
                 driver.get(baseUrl);
 
                 WebElement name = driver.findElement(By.name("productName"));
-                name.sendKeys("Product 1");
+                name.sendKeys("Product Edit");
 
                 WebElement quantity = driver.findElement(By.name("productQuantity"));
                 quantity.sendKeys("100");
