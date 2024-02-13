@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -23,21 +24,12 @@ public class DeleteProductFuntionalTest {
         @LocalServerPort
         private int serverPort;
 
+        @Autowired
+        private ProductRepository productRepository;
+
         @Value("${app.baseUrl:http://localhost}")
         private String testbaseUrl;
         private String baseUrl;
-
-        @BeforeAll
-        static void setUpAll() {
-                ProductRepository productRepository = new ProductRepository();
-                productRepository.deleteAll();
-        }
-
-        @AfterAll
-        static void tearDownAll() {
-                ProductRepository productRepository = new ProductRepository();
-                productRepository.deleteAll();
-        }
 
         @BeforeEach
         void setUp() {
@@ -48,7 +40,6 @@ public class DeleteProductFuntionalTest {
 
         @AfterEach
         void tearDown() {
-                ProductRepository productRepository = new ProductRepository();
                 productRepository.deleteAll();
         }
 
@@ -71,7 +62,7 @@ public class DeleteProductFuntionalTest {
 
                 // Check if the product is deleted
                 List<WebElement> rows = driver.findElements(By.xpath("//table/tbody/tr"));
-                assertEquals(100, rows.size());
+                assertEquals(0, rows.size());
         }
 
 }

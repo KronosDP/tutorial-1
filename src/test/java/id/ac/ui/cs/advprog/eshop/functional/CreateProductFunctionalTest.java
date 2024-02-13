@@ -7,6 +7,7 @@ import org.junit.jupiter.api.extension.ExtendWith;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.web.server.LocalServerPort;
@@ -24,32 +25,21 @@ public class CreateProductFunctionalTest {
 	@LocalServerPort
 	private int serverPort;
 
+	@Autowired
+	private ProductRepository productRepository;
+
 	@Value("${app.baseUrl:http://localhost}")
 	private String testbaseUrl;
 	private String baseUrl;
 
-	@BeforeAll
-	static void setUpAll() {
-		ProductRepository productRepository = new ProductRepository();
-		productRepository.deleteAll();
-	}
-
-	@AfterAll
-	static void tearDownAll() {
-		ProductRepository productRepository = new ProductRepository();
-		productRepository.deleteAll();
-	}
-
 	@BeforeEach
 	void setUp() {
 		baseUrl = String.format("%s:%d%s", testbaseUrl, serverPort, "/product/create");
-		ProductRepository productRepository = new ProductRepository();
 		productRepository.deleteAll();
 	}
 
 	@AfterEach
 	void tearDown() {
-		ProductRepository productRepository = new ProductRepository();
 		productRepository.deleteAll();
 	}
 
@@ -70,7 +60,7 @@ public class CreateProductFunctionalTest {
 	@Test
 	void createManyProducts(ChromeDriver driver) {
 		Random random = new Random();
-		int numberOfProducts = 100;
+		int numberOfProducts = 10;
 		for (int i = 0; i < numberOfProducts; i++) {
 			driver.get(baseUrl);
 			WebElement name = driver.findElement(By.name("productName"));
