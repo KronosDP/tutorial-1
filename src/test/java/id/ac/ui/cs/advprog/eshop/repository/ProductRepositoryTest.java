@@ -174,6 +174,25 @@ class ProductRepositoryTest {
                 });
         }
 
+        @Test
+        void testEditWithNoProductIdFound() {
+                Product product = new Product();
+                product.setProductId("eb558e9f-1c39-460e-8860-71af6af63bd6");
+                product.setProductName("Sampo Cap Bambang");
+                product.setProductQuantity(1);
+                productRepository.create(product);
+
+                Product product2 = new Product();
+                product2.setProductName("Sampo Cap Bambang");
+                product2.setProductQuantity(10);
+
+                Product updatedProduct = productRepository.update(
+                                "8534928523948590423869085-7843975328475984-48326934678467934-hfbguhit834759hgrfehg",
+                                product2);
+
+                assertNull(updatedProduct);
+        }
+
         // Delete
 
         @Test
