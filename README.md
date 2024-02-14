@@ -50,3 +50,16 @@ Jika saya diminta untuk mengecek jumlah _item_ pada product list, saya rasa memb
 Terakhir, saya ingin mengoreksi kode saya tentang membuat _unit test_ jika kita memaksa suatu atribut pada product untuk bernilai _null_. Saya mendesain program saya sedemikian rupa sehingga program saya melemparkan sebuah _exception_.
 
 </details>
+
+# Reflection 3
+
+Setelah membuat beberapa _unit tests_ tambahan untuk kode saya agar _code coverage_ saya 100% ada beberapa hal yang saya temui dan rasakan.
+
+<details close>
+<summary>See More</summary>
+
+Berpindah dari kode pada `src` dan `test` bukanlah hal yang mudah. Hal ini dikarenakan kita harus bisa melakukan _multitasking_. Saya adalah seseorang yang tidak cukup hebat dalam melakukan hal tersebut, jadi saya bukanlah seorang _expert_ dalam melakukan _unit test_. Selain itu, karena kita sedang bekerja dengan kesepakatan yang kita buat sendiri (misalnya _null_ jika tidak ditemukan) kita perlu mengingat itu ketika kita bekerja. Hal ini kadang menyulitkan kita untuk bekerja. Oleh karena itu, saya rasa mempelajari penulisan kode yang terstandarisasi merupakan hal yang sangat penting. Hal ini agar setidaknya, setiap _programmer_ yang bekerja setidaknnya memiliki standar ketika bekerja.
+
+Menurut saya, CI/CD merupakan hal yang sangat penting untuk diimplementasikan para kode yang telah kita buat. Menurut saya, dengan membuat CI/CD, kedua hal ini bisa dilakukan secara otomatis setiap kita _mengupload_ file kita. Menurut saya, CI yang telah saya buat sudah benar. Tetapi jika boleh menambahkan komentar personal saya, menurut saya menarik bahwa kita melakukan CI pada semua branch dan pull request. Apakah hal ini bisa menjadi hal yang berbahaya bagi kode kita di masa yang akan mendatang? Kemudian mengenai CD, dengan menggunakan `koyeb` saya mendapatkan error `Too Many Requests`. Menurut saya, hal ini adalah karena keterbatasan dari Docker yang adalah sebuah container yang free, oleh karena itu saya dibatasi penggunaannya.
+
+</details>
