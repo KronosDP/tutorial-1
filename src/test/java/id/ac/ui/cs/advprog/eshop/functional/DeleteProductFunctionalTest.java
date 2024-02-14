@@ -19,7 +19,7 @@ import static org.springframework.boot.test.context.SpringBootTest.WebEnvironmen
 @SpringBootTest(webEnvironment = RANDOM_PORT)
 @ExtendWith(SeleniumJupiter.class)
 
-public class DeleteProductFuntionalTest {
+public class DeleteProductFunctionalTest {
 
         @LocalServerPort
         private int serverPort;
