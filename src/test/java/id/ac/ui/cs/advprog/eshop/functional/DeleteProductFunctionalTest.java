@@ -34,7 +34,6 @@ public class DeleteProductFunctionalTest {
         @BeforeEach
         void setUp() {
                 baseUrl = String.format("%s:%d%s", testbaseUrl, serverPort, "/product/create");
-                ProductRepository productRepository = new ProductRepository();
                 productRepository.deleteAll();
         }
 
