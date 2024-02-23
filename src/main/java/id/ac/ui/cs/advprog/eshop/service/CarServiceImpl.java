@@ -42,4 +42,9 @@ public class CarServiceImpl implements CarService {
     public void deleteByCarId(String id) {
         carRepository.delete(id);
     }
+
+    @Override
+    public void deleteAll() {
+        carRepository.deleteAll();
+    }
 }

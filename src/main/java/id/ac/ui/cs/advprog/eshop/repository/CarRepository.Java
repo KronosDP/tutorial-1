@@ -52,4 +52,8 @@ public class CarRepository {
         carData.removeIf(car -> car.getCarId().equals(id));
     }
 
+    public void deleteAll() {
+        carData.clear();
+    }
+
 }
