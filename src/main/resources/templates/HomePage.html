@@ -1,71 +1,61 @@
 <!DOCTYPE html>
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Eshop Simulator</title>
-    <link
-      href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css"
-      rel="stylesheet"
-      integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
-      crossorigin="anonymous"
-    />
-  </head>
-  <body>
-    <!-- Navbar -->
-    <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
-      <a class="navbar-brand" href="/">Eshop</a>
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-toggle="collapse"
-        data-target="#navbarNav"
-        aria-controls="navbarNav"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <span class="navbar-toggler-icon"></span>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarNav">
-        <ul class="navbar-nav mr-auto">
-          <li class="nav-item active">
-            <a class="nav-link" href="#productListButton">Product</a>
-          </li>
-        </ul>
-        <span id="time" class="navbar-text"></span>
-      </div>
-    </nav>
 
-    <!-- Body -->
-    <div class="container mt-5">
-      <h3 class="text-center">Welcome To Eshop Simulator</h3>
-      <div class="d-flex justify-content-center">
-        <a
-          id="productListButton"
-          th:href="@{/product/list}"
-          class="btn btn-primary btn-sm mb-3 mt-3"
-        >
-          Product List
-        </a>
-      </div>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Eshop Simulator</title>
+  <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous" />
+</head>
+
+<body>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-lg navbar-light bg-light px-5">
+    <a class="navbar-brand" href="/">Eshop</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+      aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNav">
+      <ul class="navbar-nav mr-auto">
+        <li class="nav-item active">
+          <a class="nav-link" href="#productListButton">Product</a>
+        </li>
+      </ul>
+      <span id="time" class="navbar-text"></span>
     </div>
+  </nav>
 
-    <!-- Script -->
-    <script>
-      function updateTime() {
-        const date = new Date();
-        const day = ("0" + date.getDate()).slice(-2);
-        const month = ("0" + (date.getMonth() + 1)).slice(-2);
-        const year = date.getFullYear().toString().substr(-2);
-        const hours = ("0" + date.getHours()).slice(-2);
-        const minutes = ("0" + date.getMinutes()).slice(-2);
-        const seconds = ("0" + date.getSeconds()).slice(-2);
-        document.getElementById(
-          "time"
-        ).innerHTML = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
-      }
-      setInterval(updateTime, 1000);
-      updateTime();
-    </script>
-  </body>
+  <!-- Body -->
+  <div class="container mt-5">
+    <h3 class="text-center">Welcome To Eshop Simulator</h3>
+    <div class="d-flex justify-content-center">
+      <a id="productListButton" th:href="@{/product/list}" class="btn btn-primary btn-sm mb-3 mt-3 mr-3">Product
+        List</a>
+      <a id="carListButton" th:href="@{/car/listCar}" class="btn btn-primary btn-sm mb-3 mt-3">Car List</a>
+    </div>
+  </div>
+
+
+
+  <!-- Script -->
+  <script>
+    function updateTime() {
+      const date = new Date();
+      const day = ("0" + date.getDate()).slice(-2);
+      const month = ("0" + (date.getMonth() + 1)).slice(-2);
+      const year = date.getFullYear().toString().substr(-2);
+      const hours = ("0" + date.getHours()).slice(-2);
+      const minutes = ("0" + date.getMinutes()).slice(-2);
+      const seconds = ("0" + date.getSeconds()).slice(-2);
+      document.getElementById(
+        "time"
+      ).innerHTML = `${day}/${month}/${year} ${hours}:${minutes}:${seconds}`;
+    }
+    setInterval(updateTime, 1000);
+    updateTime();
+  </script>
+</body>
+
 </html>
