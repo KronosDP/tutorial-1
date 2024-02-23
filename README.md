@@ -63,3 +63,22 @@ Berpindah dari kode pada `src` dan `test` bukanlah hal yang mudah. Hal ini dikar
 Menurut saya, CI/CD merupakan hal yang sangat penting untuk diimplementasikan para kode yang telah kita buat. Menurut saya, dengan membuat CI/CD, kedua hal ini bisa dilakukan secara otomatis setiap kita _mengupload_ file kita. Menurut saya, CI yang telah saya buat sudah benar. Tetapi jika boleh menambahkan komentar personal saya, menurut saya menarik bahwa kita melakukan CI pada semua branch dan pull request. Apakah hal ini bisa menjadi hal yang berbahaya bagi kode kita di masa yang akan mendatang? Kemudian mengenai CD, dengan menggunakan `koyeb` saya mendapatkan error `Too Many Requests`. Menurut saya, hal ini adalah karena keterbatasan dari Docker yang adalah sebuah container yang free, oleh karena itu saya dibatasi penggunaannya.calc
 
 </details>
+
+# Reflection 4
+
+Minggu ini saya mempelajari tentang _SOLID principles_. Prinsip ini sangat penting untuk dipelajari karena akan berpengaruh terhadap aspek _scalability_ dari kode yang kita buat.
+
+<details close>
+<summary>See More</summary>
+
+Ada 5 jenis prinsip dalam _SOLID principles_. Pertama ada SRP (Single Responsibility Principle). SRP berarti setiap kelas dipisahkan menurut apa yang dilakukannya. Hal ini adalah agar setiap class memiliki hanya satu hal saja yang dikerjakan. Hal ini sangat penting supaya 1 kelas tidak melakukan 2 hal yang berbeda agar kita mudah untuk mendeteksi jika ada sebuah masalah yang terjadi. Pada kasus kode saya, saya memisahkan `CarController` dengan `ProductController` supaya terjadi pemisahan antara tugas yang ada. Hal ini agar `Car` tidak tercampur dengan `Product`.
+
+Selain itu saya juga melakukan konsep OCP, yaitu konsep _Open-Closed Principle_. Prinsip ini adalah prinsip yang kita gunakan agar ada bagian kode yang mudah untuk dilakukan ekstensi, tetapi tetap tertutup sehingga tidak mudah dimodifikasi. Hal ini adalah untuk mencegah terjadinya error. Pada kode saya, saya membuat sebuah class interface. Hal ini adalah agar saya memiliki panduan untuk method-method apa saja yang perlu saya buat dan method-method tersebut mudah untuk dilakukan ekstensi tetapi tidak mudah untuk dimodifikasi karena harus ada kelas interface yang perlu diubah juga. Hal ini diharapkan membuat saya lebih _mindful_ terhadap perubahan yang saya buat terhadap method saya.
+
+Terakhir, saya mengimplementasikan DIP, yaitu _Dependency Inversion Principle_. Disini, saya melakukan abstraksi supaya modul yang _high level_ tidak bergantung kepada yang _low level_. Contoh penerapannya bisa dilihat dari `CarController` yang menggunakan service dari `CarService` dan bukan `CarServiceImpl`. Hal ini supaya saya menggunakan service dari sebuah interface. Dengan menggunakan interface, kita sudah menerapkan penggunaan abstraksi yang telah kita buat pada Controller.
+
+Prinsip-prinsip diatas telah membantu saya agar kode yang saya buat lebih _fool proof_. Hal ini agar kode mudah dipahami (dapat dipahami dengan waktu yang cepat) dan kode yang saya buat aksesibel untuk _programmer_ pada segala jenis keahlian. Hal ini kemudian harapannya dapat meningkatkan perkembangan kode yang saya buat agar bisa dikembangkan oleh _programmer_ lain. Selain kolaborasi, kode yang kita buat ini akan lebih mudah dikelola dan hal ini membuat _scalability_ dari program kita yang baik.
+
+Jika tidak menerapkan SOLID, kode yang dibuat bisa saja sulit untuk dimengerti orang lain. Hal ini tentu menghambat perkembangan kode yang telah dibuat dan kode yang kita buat malah menjadi redundant dan tidak akan digunakan kembali. Padahal harapannnya adalah kode yang kita buat akan tetap dipakai untuk kemudian hari. Tetapi karena sulit dimengerti dan sulit untuk dikembangkan, kode-kode yang ada malah perlu waktu untuk ditulis kembali agar menjadi sebuah kode yang mudah dipahami. Hal ini tentunya memakan sumber daya yang seharusnya bisa digunakan untuk hal-hal lain yang lebih penting.
+
+</details>
