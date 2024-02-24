@@ -79,6 +79,8 @@ Terakhir, saya mengimplementasikan DIP, yaitu _Dependency Inversion Principle_. 
 
 Prinsip-prinsip diatas telah membantu saya agar kode yang saya buat lebih _fool proof_. Hal ini agar kode mudah dipahami (dapat dipahami dengan waktu yang cepat) dan kode yang saya buat aksesibel untuk _programmer_ pada segala jenis keahlian. Hal ini kemudian harapannya dapat meningkatkan perkembangan kode yang saya buat agar bisa dikembangkan oleh _programmer_ lain. Selain kolaborasi, kode yang kita buat ini akan lebih mudah dikelola dan hal ini membuat _scalability_ dari program kita yang baik.
 
+Pada kode saya, ISP (Interface Segregation Principle) diterapkan dengan cara memisahkan kelas kelas yang ada berdasarkan fungsinya. Pemisahan ini dilakukan agar kita modularitas program meningkat. Hal ini supaya kita bisa memisahkan masalah-masalah yang mungkin timbul di masa depan, jadi kita memisahkan program kita ke modul-modul yang dapat membendung masalahnya pada sebuah kelas saja, bukan pada kelas-kelas lain.
+
 Jika tidak menerapkan SOLID, kode yang dibuat bisa saja sulit untuk dimengerti orang lain. Hal ini tentu menghambat perkembangan kode yang telah dibuat dan kode yang kita buat malah menjadi redundant dan tidak akan digunakan kembali. Padahal harapannnya adalah kode yang kita buat akan tetap dipakai untuk kemudian hari. Tetapi karena sulit dimengerti dan sulit untuk dikembangkan, kode-kode yang ada malah perlu waktu untuk ditulis kembali agar menjadi sebuah kode yang mudah dipahami. Hal ini tentunya memakan sumber daya yang seharusnya bisa digunakan untuk hal-hal lain yang lebih penting.
 
 </details>
