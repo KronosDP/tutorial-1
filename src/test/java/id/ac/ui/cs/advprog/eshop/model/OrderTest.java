@@ -10,6 +10,8 @@ import java.util.List;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
+import enums.OrderStatus;
+
 public class OrderTest {
     private List<Product> products = new ArrayList<>();
 
@@ -59,7 +61,7 @@ public class OrderTest {
     void testCreateOrderSuccessStatus() {
         Order order = new Order("123456-6789",
                 this.products, 1708560000L, "Safira Sudrajat", "SUCCESS");
-        assertEquals("SUCCESS", order.getStatus());
+        assertEquals(OrderStatus.SUCCESS.getValue(), order.getStatus());
     }
 
     @Test
@@ -75,7 +77,7 @@ public class OrderTest {
         Order order = new Order("123456-6789",
                 this.products, 1708560000L, "Safira Sudrajat");
         order.setStatus("CANCELLED");
-        assertEquals("CANCELLED", order.getStatus());
+        assertEquals(OrderStatus.CANCELLED.getValue(), order.getStatus());
     }
 
     @Test
