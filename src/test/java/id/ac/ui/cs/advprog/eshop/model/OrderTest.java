@@ -1,17 +1,17 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertSame;
 import static org.junit.jupiter.api.Assertions.assertThrows;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
-import net.bytebuddy.asm.Advice.OffsetMapping.Factory.Illegal;
-
 public class OrderTest {
-    private List<Product> products;
+    private List<Product> products = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
@@ -21,9 +21,9 @@ public class OrderTest {
         product1.setProductQuantity(2);
 
         Product product2 = new Product();
-        product1.setProductId("djgfkejgi-sngjfhgjkwe-nkskvjgjrkso");
-        product1.setProductName("Sampo Cap Usep");
-        product1.setProductQuantity(1);
+        product2.setProductId("djgfkejgi-sngjfhgjkwe-nkskvjgjrkso");
+        product2.setProductName("Sampo Cap Usep");
+        product2.setProductQuantity(1);
 
         this.products.add(product1);
         this.products.add(product2);
@@ -33,9 +33,9 @@ public class OrderTest {
     void testCreateOrderEmptyProduct() {
         this.products.clear();
 
-    assertThrows(IllegalArgumentException.class, () -> {
-        Order order new Order("123456-6789", 
-        this.products, 1708560000L, "Safira Sudrajat");
+        assertThrows(IllegalArgumentException.class, () -> {
+            Order order = new Order("123456-6789",
+                    this.products, 1708560000L, "Safira Sudrajat");
         });
     }
 
@@ -45,7 +45,7 @@ public class OrderTest {
                 this.products, 1708560000L, "Safira Sudrajat");
 
         assertSame(this.products, order.getProducts());
-        assertEquals(2, order.getProducts.size());
+        assertEquals(2, order.getProducts().size());
         assertEquals("Sampo Cap Bambang", order.getProducts().get(0).getProductName());
         assertEquals("Sampo Cap Usep", order.getProducts().get(1).getProductName());
 
