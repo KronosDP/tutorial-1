@@ -84,3 +84,20 @@ Pada kode saya, ISP (Interface Segregation Principle) diterapkan dengan cara mem
 Jika tidak menerapkan SOLID, kode yang dibuat bisa saja sulit untuk dimengerti orang lain. Hal ini tentu menghambat perkembangan kode yang telah dibuat dan kode yang kita buat malah menjadi redundant dan tidak akan digunakan kembali. Padahal harapannnya adalah kode yang kita buat akan tetap dipakai untuk kemudian hari. Tetapi karena sulit dimengerti dan sulit untuk dikembangkan, kode-kode yang ada malah perlu waktu untuk ditulis kembali agar menjadi sebuah kode yang mudah dipahami. Hal ini tentunya memakan sumber daya yang seharusnya bisa digunakan untuk hal-hal lain yang lebih penting.
 
 </details>
+
+# Reflection 5
+
+Refactoring and Tes-Driven Development (TDD)
+
+<details close>
+<summary>See More</summary>
+
+## Bergunakan TDD?
+
+Bagi saya, TDD adalah sebuah cara kerja yang baru. Cara berpikir saya berubah karena adanya TDD. Sebelum mengenal TDD saya adalah seorang yang berusaha membuat apa yang diminta _requirements_ kemudian menuliskan kodenya. Setelah semuanya selesai, saya kemudian menjalakan unit test maupun refactoring. Tetapi, karena sekarang workflow saya menggunakan TDD, saya sekarang perlu membuat unit test yang sesuai dengan requirements, yang kemudian saya buat kodenya agar unit test yang ada bisa berjalan dengan lancar. Bagi saya, cara kerja TDD sebenarnya lebih baik. Hal ini karena kita tidak perlu membuat terlalu banyak unit test yang membuat unit test kita menjadi redundant. Hal ini sangat baik jika kita ingin menuliskan kode dengan cepat. Hal yang perlu diperhatikan adalah bagaimana kita menerjemahkan requirements yang ada menjadi sebuah unit test yang baik. Hal ini karena kode kita sekarang bergantung terhadap unit test yang ada. Bagi saya, TDD adalah hal yang baik. Masalahnya mungkin ada karena saya belum terbiasa menulis unit test terlebih dahulu dan untuk membuat unit test sesuai dengan requirements yang ada.
+
+## F.I.R.S.T. Principle
+
+Menurut saya, F.I.R.S.T. principle sudah saya lakukan pada kode saya. Hal yang perlu diperhatikan bagi saya adalah bagaimana saya perlu mengerjakan dengan cepat, sesuai dengan F pada F.I.R.S.T. yang berarti `Fast`. Bagian dimana saya masih belum nyaman dan cepat adalah bagian dimana saya perlu menerjemahkan requirements yang ada untuk menjadi unit test. Hal ini menghalangi saya untuk bekerja dengan cepat. Perbaikannya kedepan adalah saya perlu membiasakan diri supaya saya bisa bekerja dengan lebih cepat dan iteratif.
+
+</details>
