@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import enums.OrderStatus;
+
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
@@ -12,8 +13,8 @@ import java.util.Map;
 import static org.junit.jupiter.api.Assertions.*;
 
 class PaymentTest {
-    private List<Product> products;
-    private List<Order> orders;
+    private List<Product> products = new ArrayList<>();
+    private List<Order> orders = new ArrayList<>();
 
     @BeforeEach
     void setUp() {
@@ -112,6 +113,72 @@ class PaymentTest {
 
         assertThrows(IllegalArgumentException.class, () -> {
             payment.setStatus("MEOW");
+        });
+    }
+
+    @Test
+    void testCreatePaymentCODSuccess() {
+        Map<String, String> paymentData = new HashMap<String, String>();
+        paymentData.put("address", "Jl. Pensil Raya No. 8, Jakarta Selatan");
+        paymentData.put("deliveryFee", "7000");
+        Payment payment = new Payment("24893048-834950854-869548608", this.orders.getFirst(),
+                "CASH_ON_DELIVERY", paymentData);
+
+        assertEquals("SUCCESS", payment.getStatus());
+    }
+
+    @Test
+    void testCreatePaymentCODRejectedNoAddress() {
+        Map<String, String> paymentData = new HashMap<String, String>();
+        paymentData.put("deliveryFee", "12000");
+        Payment payment = new Payment("24893048-834950854-869548608", this.orders.getFirst(),
+                "CASH_ON_DELIVERY", paymentData);
+
+        assertEquals("REJECTED", payment.getStatus());
+    }
+
+    @Test
+    void testCreatePaymentCODRejectedNoDeliveryFee() {
+        Map<String, String> paymentData = new HashMap<String, String>();
+        paymentData.put("address", "Jalan Anggur");
+        Payment payment = new Payment("24893048-834950854-869548608", this.orders.getFirst(),
+                "CASH_ON_DELIVERY", paymentData);
+
+        assertEquals("REJECTED", payment.getStatus());
+    }
+
+    @Test
+    void testSetStatusPaymentCODSucess() {
+        Map<String, String> paymentData = new HashMap<String, String>();
+        paymentData.put("address", "Jalan Anggur");
+        paymentData.put("deliveryFee", "12000");
+        Payment payment = new Payment("24893048-834950854-869548608", this.orders.getFirst(),
+                "CASH_ON_DELIVERY", paymentData);
+
+        payment.setStatus("SUCCESS");
+        assertEquals("SUCCESS", payment.getOrder().getStatus());
+    }
+
+    @Test
+    void testSetStatusPaymentCODRejected() {
+        Map<String, String> paymentData = new HashMap<String, String>();
+        paymentData.put("address", "Jalan Anggur");
+        paymentData.put("deliveryFee", "12000");
+        Payment payment = new Payment("24893048-834950854-869548608", this.orders.getFirst(),
+                "CASH_ON_DELIVERY", paymentData);
+
+        payment.setStatus("REJECTED");
+        assertEquals("FAILED", payment.getOrder().getStatus());
+    }
+
+    @Test
+    void testCreateOrderInvalidMethod() {
+        Map<String, String> paymentData = new HashMap<String, String>();
+        paymentData.put("voucherCode", "ESHOP1234ABC567D");
+
+        assertThrows(IllegalArgumentException.class, () -> {
+            Payment payment = new Payment("24893048-834950854-869548608", this.orders.getFirst(), "MEOW",
+                    paymentData);
         });
     }
 }
