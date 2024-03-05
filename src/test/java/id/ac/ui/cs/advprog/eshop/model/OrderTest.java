@@ -42,7 +42,7 @@ public class OrderTest {
     }
 
     @Test
-    void TestCreateOrderDefaultStatus() {
+    void testCreateOrderDefaultStatus() {
         Order order = new Order("123456-6789",
                 this.products, 1708560000L, "Safira Sudrajat");
 
