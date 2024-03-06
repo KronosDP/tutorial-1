@@ -8,6 +8,8 @@ import id.ac.ui.cs.advprog.eshop.model.Payment;
 import id.ac.ui.cs.advprog.eshop.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 
+import enums.PaymentWays;
+
 import java.util.List;
 import java.util.Map;
 import java.util.NoSuchElementException;
@@ -17,22 +19,26 @@ public class PaymentServiceImpl implements PaymentService {
     private PaymentRepository paymentRepository;
 
     public Payment addPayment(String id, Order order, String method, Map<String, String> paymentData) {
-        if (paymentRepository.findById(id) == null) {
-            Payment payment;
-            switch (method) {
-                case "VOUCHER_CODE":
-                    payment = new PaymentVoucherCode(id, order, method, paymentData);
-                    break;
-                case "CASH_ON_DELIVERY":
-                    payment = new PaymentCOD(id, order, method, paymentData);
-                    break;
-                default:
-                    throw new IllegalArgumentException();
-            }
-            paymentRepository.save(payment);
-            return payment;
+        if (paymentRepository.findById(id) != null) {
+            return null;
         }
-        return null;
+
+        Payment payment;
+        PaymentWays paymentWay = PaymentWays.valueOf(method);
+
+        switch (paymentWay) {
+            case VOUCHER_CODE:
+                payment = new PaymentVoucherCode(id, order, method, paymentData);
+                break;
+            case CASH_ON_DELIVERY:
+                payment = new PaymentCOD(id, order, method, paymentData);
+                break;
+            default:
+                throw new IllegalArgumentException("Invalid payment method: " + method);
+        }
+
+        paymentRepository.save(payment);
+        return payment;
     }
 
     public Payment setStatus(Payment payment, String status) {
