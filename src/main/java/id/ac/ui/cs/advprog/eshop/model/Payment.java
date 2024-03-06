@@ -50,7 +50,7 @@ public class Payment {
                 order.setStatus("FAILED");
                 break;
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Invalid status");
         }
     }
 
@@ -64,7 +64,7 @@ public class Payment {
                 valid = validateCOD(paymentData);
                 break;
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Invalid payment method");
         }
         return valid;
     }
