@@ -1,19 +1,9 @@
 package id.ac.ui.cs.advprog.eshop.service;
 
-import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.junit.jupiter.api.Assertions.assertNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
-import static org.mockito.ArgumentMatchers.any;
-import static org.mockito.Mockito.doReturn;
-import static org.mockito.Mockito.times;
-import static org.mockito.Mockito.verify;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-import java.util.NoSuchElementException;
-
+import enums.PaymentStatus;
+import enums.PaymentWays;
+import id.ac.ui.cs.advprog.eshop.model.*;
+import id.ac.ui.cs.advprog.eshop.repository.PaymentRepository;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -21,14 +11,11 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import enums.PaymentStatus;
-import enums.PaymentWays;
-import id.ac.ui.cs.advprog.eshop.model.Order;
-import id.ac.ui.cs.advprog.eshop.model.Payment;
-import id.ac.ui.cs.advprog.eshop.model.PaymentCOD;
-import id.ac.ui.cs.advprog.eshop.model.PaymentVoucherCode;
-import id.ac.ui.cs.advprog.eshop.model.Product;
-import id.ac.ui.cs.advprog.eshop.repository.PaymentRepository;
+import java.util.*;
+
+import static org.junit.jupiter.api.Assertions.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.Mockito.*;
 
 @ExtendWith(MockitoExtension.class)
 public class PaymentServiceImplTest {
