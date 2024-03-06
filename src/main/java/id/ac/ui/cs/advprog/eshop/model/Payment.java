@@ -2,6 +2,7 @@ package id.ac.ui.cs.advprog.eshop.model;
 
 import enums.OrderStatus;
 import enums.PaymentStatus;
+import enums.PaymentWays;
 import lombok.Getter;
 
 import java.util.Map;
@@ -39,7 +40,8 @@ public abstract class Payment {
     }
 
     private boolean isValidPaymentMethod(String method) {
-        return method.equals("CASH_ON_DELIVERY") || method.equals("VOUCHER_CODE");
+        return method.equals(PaymentWays.CASH_ON_DELIVERY.getValue())
+                || method.equals(PaymentWays.VOUCHER_CODE.getValue());
     }
 
     public abstract boolean validatePaymentMethod(String method, Map<String, String> paymentData);

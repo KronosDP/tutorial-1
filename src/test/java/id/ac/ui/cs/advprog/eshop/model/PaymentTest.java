@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import enums.OrderStatus;
+import enums.PaymentWays;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -46,7 +47,9 @@ class PaymentTest {
     void testCreatePaymentVoucherCodeSuccess() {
         Map<String, String> paymentData = new HashMap<String, String>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678");
-        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(), "VOUCHER_CODE",
+        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(),
+                PaymentWays.VOUCHER_CODE
+                        .getValue(),
                 paymentData);
 
         assertEquals("SUCCESS", payment.getStatus());
@@ -56,7 +59,8 @@ class PaymentTest {
     void testCreatePaymentVoucherCharacterInvalid() {
         Map<String, String> paymentData = new HashMap<String, String>();
         paymentData.put("voucherCode", "ESHOP1234ABC5678iferjqgkjoerjgkoje");
-        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(), "VOUCHER_CODE",
+        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(),
+                PaymentWays.VOUCHER_CODE.getValue(),
                 paymentData);
 
         assertEquals("REJECTED", payment.getStatus());
@@ -66,7 +70,8 @@ class PaymentTest {
     void testCreatePaymentVoucherNotStartingEshop() {
         Map<String, String> paymentData = new HashMap<String, String>();
         paymentData.put("voucherCode", "blablablaESHOP1234ABC567");
-        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(), "VOUCHER_CODE",
+        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(),
+                PaymentWays.VOUCHER_CODE.getValue(),
                 paymentData);
 
         assertEquals("REJECTED", payment.getStatus());
@@ -76,7 +81,8 @@ class PaymentTest {
     void testCreatePaymentVoucherRejectVoucherCodeNo8Numerals() {
         Map<String, String> paymentData = new HashMap<String, String>();
         paymentData.put("voucherCode", "ESHOP1234ABC567D85802938590");
-        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(), "VOUCHER_CODE",
+        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(),
+                PaymentWays.VOUCHER_CODE.getValue(),
                 paymentData);
 
         assertEquals("REJECTED", payment.getStatus());
@@ -86,7 +92,8 @@ class PaymentTest {
     void testSetStatusPaymentVoucherSucess() {
         Map<String, String> paymentData = new HashMap<String, String>();
         paymentData.put("voucherCode", "ESHOP1234ABC567D");
-        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(), "VOUCHER_CODE",
+        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(),
+                PaymentWays.VOUCHER_CODE.getValue(),
                 paymentData);
 
         payment.setStatus("SUCCESS");
@@ -97,7 +104,8 @@ class PaymentTest {
     void testSetStatusPaymentVoucherRejected() {
         Map<String, String> paymentData = new HashMap<String, String>();
         paymentData.put("voucherCode", "ESHOP1234ABC567D");
-        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(), "VOUCHER_CODE",
+        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(),
+                PaymentWays.VOUCHER_CODE.getValue(),
                 paymentData);
 
         payment.setStatus("REJECTED");
@@ -108,7 +116,8 @@ class PaymentTest {
     void testCreateOrderInvalidStatus() {
         Map<String, String> paymentData = new HashMap<String, String>();
         paymentData.put("voucherCode", "ESHOP1234ABC567D");
-        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(), "VOUCHER_CODE",
+        Payment payment = new PaymentVoucherCode("385390-895640-hdiwgoir", this.orders.getFirst(),
+                PaymentWays.VOUCHER_CODE.getValue(),
                 paymentData);
 
         assertThrows(IllegalArgumentException.class, () -> {
@@ -122,7 +131,7 @@ class PaymentTest {
         paymentData.put("address", "Jl. Pensil Raya No. 8, Jakarta Selatan");
         paymentData.put("deliveryFee", "7000");
         Payment payment = new PaymentCOD("24893048-834950854-869548608", this.orders.getFirst(),
-                "CASH_ON_DELIVERY", paymentData);
+                PaymentWays.CASH_ON_DELIVERY.getValue(), paymentData);
 
         assertEquals("SUCCESS", payment.getStatus());
     }
@@ -132,7 +141,7 @@ class PaymentTest {
         Map<String, String> paymentData = new HashMap<String, String>();
         paymentData.put("deliveryFee", "12000");
         Payment payment = new PaymentCOD("24893048-834950854-869548608", this.orders.getFirst(),
-                "CASH_ON_DELIVERY", paymentData);
+                PaymentWays.CASH_ON_DELIVERY.getValue(), paymentData);
 
         assertEquals("REJECTED", payment.getStatus());
     }
@@ -142,7 +151,7 @@ class PaymentTest {
         Map<String, String> paymentData = new HashMap<String, String>();
         paymentData.put("address", "Jalan Anggur");
         Payment payment = new PaymentCOD("24893048-834950854-869548608", this.orders.getFirst(),
-                "CASH_ON_DELIVERY", paymentData);
+                PaymentWays.CASH_ON_DELIVERY.getValue(), paymentData);
 
         assertEquals("REJECTED", payment.getStatus());
     }
@@ -153,7 +162,7 @@ class PaymentTest {
         paymentData.put("address", "Jalan Anggur");
         paymentData.put("deliveryFee", "12000");
         Payment payment = new PaymentCOD("24893048-834950854-869548608", this.orders.getFirst(),
-                "CASH_ON_DELIVERY", paymentData);
+                PaymentWays.CASH_ON_DELIVERY.getValue(), paymentData);
 
         payment.setStatus("SUCCESS");
         assertEquals("SUCCESS", payment.getOrder().getStatus());
@@ -165,7 +174,7 @@ class PaymentTest {
         paymentData.put("address", "Jalan Anggur");
         paymentData.put("deliveryFee", "12000");
         Payment payment = new PaymentCOD("24893048-834950854-869548608", this.orders.getFirst(),
-                "CASH_ON_DELIVERY", paymentData);
+                PaymentWays.CASH_ON_DELIVERY.getValue(), paymentData);
 
         payment.setStatus("REJECTED");
         assertEquals("FAILED", payment.getOrder().getStatus());
