@@ -2,6 +2,8 @@ package id.ac.ui.cs.advprog.eshop.service;
 
 import id.ac.ui.cs.advprog.eshop.model.Order;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
+import id.ac.ui.cs.advprog.eshop.model.PaymentCOD;
+import id.ac.ui.cs.advprog.eshop.model.PaymentVoucherCode;
 import id.ac.ui.cs.advprog.eshop.model.Payment;
 import id.ac.ui.cs.advprog.eshop.repository.PaymentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,10 +21,10 @@ public class PaymentServiceImpl implements PaymentService {
             Payment payment;
             switch (method) {
                 case "VOUCHER_CODE":
-                    payment = new Payment(id, order, method, paymentData);
+                    payment = new PaymentVoucherCode(id, order, method, paymentData);
                     break;
                 case "CASH_ON_DELIVERY":
-                    payment = new Payment(id, order, method, paymentData);
+                    payment = new PaymentCOD(id, order, method, paymentData);
                     break;
                 default:
                     throw new IllegalArgumentException();
