@@ -1,6 +1,7 @@
 package id.ac.ui.cs.advprog.eshop.model;
 
 import enums.OrderStatus;
+import enums.PaymentStatus;
 import lombok.Builder;
 import lombok.Getter;
 
@@ -25,9 +26,9 @@ public class Payment {
         boolean valid = validatePaymentMethod(method, paymentData);
 
         if (valid) {
-            setStatus("SUCCESS");
+            setStatus(PaymentStatus.SUCCESS.getValue());
         } else {
-            setStatus("REJECTED");
+            setStatus(PaymentStatus.REJECTED.getValue());
         }
     }
 
@@ -41,16 +42,16 @@ public class Payment {
 
     public void setStatus(String status) {
         switch (status) {
-            case "SUCCESS":
+            case PaymentStatus.SUCCESS.getValue():
                 this.status = status;
-                order.setStatus("SUCCESS");
+                order.setStatus(OrderStatus.SUCCESS.getValue());
                 break;
-            case "REJECTED":
+            case PaymentStatus.REJECTED.getValue():
                 this.status = status;
-                order.setStatus("FAILED");
+                order.setStatus(OrderStatus.FAILED.getValue());
                 break;
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Invalid status");
         }
     }
 
@@ -64,7 +65,7 @@ public class Payment {
                 valid = validateCOD(paymentData);
                 break;
             default:
-                throw new IllegalArgumentException();
+                throw new IllegalArgumentException("Invalid payment method");
         }
         return valid;
     }
